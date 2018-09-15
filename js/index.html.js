@@ -122,126 +122,30 @@ document.documentElement.innerHTML='\
 			padding-top: 0.5em;\
 		}\
 	</style>\
-	<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/common-min.js?v=1.4.0"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/common-min.js"></script>\
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>\
-	<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/booru-params.js?v=1.4.0"></script>\
-	<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/helpers.min.js?v=1.4.1"></script>\
-	<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/uploader.js?v=1.4.1"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/booru-params.js"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/helpers.min.js"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/uploader.js"></script>\
 </head>\
 <body>\
-<h1>Booru Mass-Uploader<span style="font-size:14px;"> v1.4.2</span></h1>\
+<h1>Booru Mass-Uploader for Booru Wizard<span style="font-size:14px;"> v1.4.0</span></h1>\
 <p class="intro">This script allows you to mass-upload images to imageboard sites running *booru software.\
-	Select a number of files and they\'re sent to the website along with the metadata you include such as\
-	the tags retrived from the filenames.</p>\
+	It is designed to work in conjunction with the .JSON files output from\
+	<a href="https://github.com/NetDenizen/booru-wizard">https://github.com/NetDenizen/booru-wizard</a>\
+	Select a number of .JSON and image files.\
+	The .JSON files determine which image files to upload, and what metadata they should have.</p>\
+\
 \
 <fieldset style="padding: 2px 1em">\
 	<legend>\
-		Filename syntax for correct uploads\
-		<span onclick="var el = \'fileNamesTip\'; $style(el, \'display\') == \'block\' ? $hide(el) : $show(el);">\
-		  [+/-]\
-		</span>\
-	</legend>\
-\
-	<div id="fileNamesTip" style="display: none; margin: 1em">\
-		<p>\
-			Example filename: <q>q <b>nagisa muted_color tagme</b> <u>Filename</u>.jpg</q>, where:\
-		</p>\
-		<ol>\
-			<li> <q>q </q> is the image rating:\
-				<abbr title="Check http://*.booru.org/help/ratings.php for what these mean.">\
-				<q>s </q> = Safe, <q>q </q> = Questionable, and <q>e </q> = Explicit</abbr>;\
-				this part is optional.\
-				<span id="moreInfo0H" style="cursor: hand; color: blue; display: inline;"\
-				onclick="document.getElementById(\'moreInfo0H\').style.display = \'none\';\
-				document.getElementById(\'moreInfo0\').style.display = \'inline\';">+</span>\
-				<span id="moreInfo0" style="display: none;"><br>The next section allows to set image ratings based on the button selected or the filenames\
-				and/or the button selected. The ratings of can be set either by forcing all\
-				images in an upload session to have the same rating regardless of the filenames\
-				or by the first filename element with fallback to options.</span>\
-			</li>\
-			<li> <b>Tags</b> separated by spaces. Here are 3 of them: <q>nagisa</q>, <q>muted_color</q> and <q>tagme</q>.\
-				<span id="moreInfo1H" style="cursor:hand; color: blue; display: inline;"\
-				onclick="document.getElementById(\'moreInfo1H\').style.display = \'none\';\
-				document.getElementById(\'moreInfo1\').style.display = \'inline\';">+</span>\
-				<span id="moreInfo1" style="display: none;"><br>Tags should be in ANSI format, use <q>_</q> for spaces between words of a single tag.\
-				The <q>tagme</q> tag might be added by some boorus if there are under ~5 tags.</span>\
-			</li>\
-			<li> The <u>filename</u> is either ignored or used as image title on Gelbooru, here it is "Filename".\
-				<span id="moreInfo2H" style="cursor:hand; color: blue; display: inline;"\
-				onclick="document.getElementById(\'moreInfo2H\').style.display = \'none\';\
-				document.getElementById(\'moreInfo2\').style.display = \'inline\';">+</span>\
-				<span id="moreInfo2" style="display: none;"><br>Keep it if describes the image well or can be Googled to find the source.\
-				Don\'t keep it if the filenames are numbered like "q ascii 1.jpg", "q ascii 2.jpg",\
-				"q ascii 3.jpg"	to avoid duplicate filenames.</span>\
-			</li>\
-		</ol>\
-	</div>\
-</fieldset>\
-\
-<fieldset>\
-	<legend>Image ratings</legend>\
-\
-	<div class="para">\
-		<input type="radio" name="rating-when" id="forceRating" checked="checked"/>\
-		<label for="forceRating"><strong>Force</strong> all ratings regardless of filename.</label>\
-		<input type="radio" name="rating-when" id="ratingAsDefault"/>\
-		<label for="ratingAsDefault">Only set rating if failed to determine it from the filename.</label>\
-	</div>\
-\
-	<div class="para">\
-		<input type="radio" name="rating" id="setSafe" checked="checked"/>\
-		<label for="setSafe"><b>Safe</b></label>\
-		<input type="radio" name="rating" id="setQuest"/>\
-		<label for="setQuest">Questionable</label>\
-		<input type="radio" name="rating" id="setExplicit"/>\
-		<label for="setExplicit"><i>Explicit</i></label>\
-	</div>\
-</fieldset>\
-\
-<fieldset>\
-	<legend>Tagging</legend>\
-\
-    <input type="radio" name="tag-when" id="sidecarTags" onchange="onSidecarChange(event)" value="sidecar"/>\
-    <label for="sidecarTags">Ignore filenames, use <strong>sidecar .txt</strong> files as sources of tags for each image.</label>\
-<br/>\
-\
-	<input type="radio" name="tag-when" id="forceTags" checked="checked" onchange="onSidecarChange(event)" value="force"/>\
-	<label for="forceTags">Ignore filenames, <strong>force</strong> tags of all images.</label>\
-	<br/>\
-\
-	<input type="radio" name="tag-when" id="addTags" onchange="onSidecarChange(event)" value="add"/>\
-	<label for="addTags">Use tags from <b>filenames</b> and add these tags to each image:</label>\
-	<br/>\
-\
-	<div id="tagsWr">\
-		Tag list (separate with spaces):\
-		<input type="text" id="tags" style="width: 77%"/>\
-	</div>\
-	<div id="mytags" style="display:none;">\
-		<div style="float:left; ">Your tags:</div>\
-		<div style="text-align:center;" id="my-tags"></div>\
-	</div>\
-</fieldset>\
-\
-<fieldset style="padding: 2px 1em">\
-	<legend>\
-		Other settings\
+		Settings\
 		<span onclick="var el = \'otherSettings\'; $style(el, \'display\') == \'block\' ? $hide(el) : $show(el);">\
 		  [+/-]\
 		</span>\
 	</legend>\
 \
 	<div id="otherSettings" style="display: block;">\
-		<div>\
-			<div style="float:left;" class="para">\
-				<input type="checkbox" id="title"/>\
-				<label for="title">Set Title of each image to its original filename</label>\
-			</div>\
-			<div style="float:right;" class="para">\
-				Set Source field of each image to\
-				<input type="text" id="source" placeholder="Booru mass uploader" style="width:200px;"/>\
-			</div>\
-		</div>\
 		<div style="text-align:center; padding-bottom:14px; clear:both;">\
 			Select booru engine: <select id="engine" style="text-align:center; padding-top:3px;">\
 			<option value="gelbooru" selected>Gelbooru</option>\
@@ -253,19 +157,18 @@ document.documentElement.innerHTML='\
 		</div>\
 	</div>\
 </fieldset>\
-<div class="para" style="text-align:center;">Selection mode:\
-	<input type="radio" name="selection" id="asFiles" checked="checked">\
-	<label for="asFiles">files</label>\
-	<input type="radio" name="selection" id="asFolder">\
-	<label for="asFolder">folder</label>\
+<div class="para" style="padding:2px 1em;text-align:center;">\
+	.JSON files:\
+	<input type="file" id="jsons" multiple="true" accept="application/json" style="width:90%;" onchange="onJsonsSelect(event.target.files)"/><br>\
+	<span id="selectStatus"></span>\
 </div>\
 <div class="para" style="padding:2px 1em;text-align:center;">\
-	Images:\
-	<input type="file" id="files" multiple="true" accept="image/*" style="width:90%;" onchange="onFileSelect(event.target.files)"/><br>\
+	Input Directory:\
+	<input type="file" id="images" multiple="true" accept="image/*" style="width:90%;" onchange="onImagesSelect(event.target.files)"/><br>\
 	<span id="selectStatus"></span>\
 </div>\
 <br>\
-<img src="https://seedmanc.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
+<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
 <p style="display: none;" id="infobar">You are <b id="loggedIn"></b> to a <b id="current"></b> site.</p>\
 <button disabled="" id="submit" onclick="FilesSelected( $(\'files\').files );">Upload!</button>\
 \
