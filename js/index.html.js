@@ -122,11 +122,11 @@ document.documentElement.innerHTML='\
 			padding-top: 0.5em;\
 		}\
 	</style>\
-	//TODO<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/common-min.js?v=1.4.0"></script>\
-	//TODO<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>\
-	//TODO<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/booru-params.js?v=1.4.0"></script>\
-	//TODO<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/helpers.min.js?v=1.4.1"></script>\
-	//TODO<script type="text/javascript" src="https://seedmanc.github.io/Booru-mass-uploader/js/uploader.js?v=1.4.1"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/common-min.js"></script>\
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/booru-params.js"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/helpers.min.js"></script>\
+	<script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/uploader.js"></script>\
 </head>\
 <body>\
 <h1>Booru Mass-Uploader for Booru Wizard<span style="font-size:14px;"> v1.4.0</span></h1>\
@@ -168,7 +168,7 @@ document.documentElement.innerHTML='\
 	<span id="selectStatus"></span>\
 </div>\
 <br>\
-//TODO<img src="https://seedmanc.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
+<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
 <p style="display: none;" id="infobar">You are <b id="loggedIn"></b> to a <b id="current"></b> site.</p>\
 <button disabled="" id="submit" onclick="FilesSelected( $(\'files\').files );">Upload!</button>\
 \
