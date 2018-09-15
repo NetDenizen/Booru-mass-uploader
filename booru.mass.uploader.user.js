@@ -50,8 +50,8 @@ function activateScripts(scripts, i) {
 if (~document.location.href.indexOf('s=mass_upload')) {
 	var script = document.createElement('script');
 
-	document.body.innerHTML = '<img src="https://seedmanc.github.io/Booru-mass-uploader/spinner.gif"/>';
-	script.src = 'https://seedmanc.github.io/Booru-mass-uploader/js/index.html.js?v=1.4.2';
+	document.body.innerHTML = '<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif"/>';
+	script.src = 'https://netdenizen.github.io/Booru-mass-uploader/js/index.html.js';
 	script.onload = function () {
 		var scripts = document.getElementsByTagName('script');
 
