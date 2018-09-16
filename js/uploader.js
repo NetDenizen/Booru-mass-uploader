@@ -102,7 +102,7 @@ function GetFileInfo() {
             alert('Failed to parse file "' + JsonPaths[i] + '"');
             continue;
         }
-        reqVars.concat( getReqVars(images, obj) );
+        reqVars.concat( getReqVars(ImagePaths, obj) );
     }
     return reqVars;
 }
