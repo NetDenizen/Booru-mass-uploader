@@ -1,5 +1,5 @@
 var upOptions = {
-    running: false;
+    running: false
 };
 var current = localStorage.getItem(document.location.host) || localStorage.getItem('current') || 'gelbooru';
 var engine = $("engine");
