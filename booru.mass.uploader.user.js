@@ -4,8 +4,8 @@
 // @namespace 	https://github.com/NetDenizen/Booru-mass-uploader
 // @version     0.1
 // @author		NetDeinzen
-// @include     http://127.0.0.1*/index.php*
-// @include     http://localhost*/index.php*
+// @include     http://127.0.0.1:8080/index.php*
+// @include     http://localhost:8080/index.php*
 // @include     http*://*.booru.org/index.php*
 // @include     http://rule34.xxx/index.php*
 // @include 	https://gelbooru.com/index.php*
@@ -82,9 +82,8 @@ if (~document.location.href.indexOf('s=mass_upload')) {
 	a.style.fontWeight = 'bold';
 	a.appendChild(document.createTextNode('Mass Upload'));
 	a.href = document.location.protocol + '//' + document.location.hostname + '/index.php?page=post&s=mass_upload';
-	a.id = 'MassUploadLink'
 
-	if ( navbar && !!navbar.getElementById('MassUploadLink') ) {
+	if (navbar) {
 		li.appendChild(a);
 		navbar.appendChild(li);
 	} else {
