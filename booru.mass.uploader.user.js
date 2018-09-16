@@ -81,7 +81,7 @@ if (~document.location.href.indexOf('s=mass_upload')) {
 
 	a.style.fontWeight = 'bold';
 	a.appendChild(document.createTextNode('Mass Upload'));
-	a.href = document.location.protocol + '//' + document.location.hostname + '/index.php?page=post&s=mass_upload';
+	a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
 
 	if (navbar) {
 		li.appendChild(a);

@@ -112,7 +112,7 @@ function GetFileInfo() {
 	return reqVars;
 }
 
-function FilesSelected(selFiles) {
+function FilesSelected() {
     bat = [];
     header = {};
     $('bat').hide();
@@ -364,10 +364,8 @@ function UpdateUpProgress(percent) {
 
 function onImagesSelect(files) {
     $set('selectStatus','(All files with MIME types other than <tt>image/*</tt> and\n\textension other than <tt>jpg/jpeg/gif/png/bmp</tt> will be skipped)');
-    files = [].slice.apply(files);
 }
 
 function onJsonsSelect(files) {
     $set('selectStatus','(All files with MIME types other than <tt>application/json</tt> and\n\textension other than <tt>json</tt> will be skipped)');
-    files = [].slice.apply(files);
 }

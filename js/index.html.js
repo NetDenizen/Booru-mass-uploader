@@ -110,10 +110,6 @@ document.documentElement.innerHTML='\
 			display: block;\
 		}\
 \
-		#my-tags > a {\
-			text-decoration: none;\
-		}\
-\
 		.bold {\
 			font-weight: bold;\
 		}\
@@ -159,18 +155,18 @@ document.documentElement.innerHTML='\
 </fieldset>\
 <div class="para" style="padding:2px 1em;text-align:center;">\
 	.JSON files:\
-	<input type="file" id="jsons" multiple="true" accept="application/json" style="width:90%;" onchange="onJsonsSelect(event.target.files)"/><br>\
+	<input type="file" id="jsons" multiple="true" accept="application/json" onchange="onJsonsSelect(event.target.files)"/><br>\
 	<span id="selectStatus"></span>\
 </div>\
 <div class="para" style="padding:2px 1em;text-align:center;">\
 	Input Directory:\
-	<input type="file" id="images" multiple="true" accept="image/*" style="width:90%;" onchange="onImagesSelect(event.target.files)"/><br>\
+	<input type="file" id="images" multiple="true" accept="image/*" onchange="onImagesSelect(event.target.files)"/><br>\
 	<span id="selectStatus"></span>\
 </div>\
 <br>\
 <img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
 <p style="display: none;" id="infobar">You are <b id="loggedIn"></b> to a <b id="current"></b> site.</p>\
-<button disabled="" id="submit" onclick="FilesSelected( $(\'files\').files );">Upload!</button>\
+<button disabled="" id="submit" onclick="FilesSelected();">Upload!</button>\
 \
 <h2 id="status"></h2>\
 <div id="progressWr">\
