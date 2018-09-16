@@ -28,69 +28,69 @@
 // ==/UserScript==
 
 if (window.top != window.self) {
-	throw 'no iframes';
+    throw 'no iframes';
 }
 
 function activateScripts(scripts, i) {
-	var node   = scripts[i],
-	    parent = node.parentElement,
-	    d      = document.createElement('script');
+    var node   = scripts[i],
+        parent = node.parentElement,
+        d      = document.createElement('script');
 
-	d.async = node.async;
-	d.src = node.src;
-	d.onload = function () {
-		if (i < scripts.length - 1) {
-			activateScripts(scripts, i + 1);
-		}
-	};
-	parent.insertBefore(d, node);
-	parent.removeChild(node);
+    d.async = node.async;
+    d.src = node.src;
+    d.onload = function () {
+        if (i < scripts.length - 1) {
+            activateScripts(scripts, i + 1);
+        }
+    };
+    parent.insertBefore(d, node);
+    parent.removeChild(node);
 }
 
 if (~document.location.href.indexOf('s=mass_upload')) {
-	var script = document.createElement('script');
+    var script = document.createElement('script');
 
-	document.body.innerHTML = '<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif"/>';
-	script.src = 'https://netdenizen.github.io/Booru-mass-uploader/js/index.html.js';
-	script.onload = function () {
-		var scripts = document.getElementsByTagName('script');
+    document.body.innerHTML = '<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif"/>';
+    script.src = 'https://netdenizen.github.io/Booru-mass-uploader/js/index.html.js';
+    script.onload = function () {
+        var scripts = document.getElementsByTagName('script');
 
-		activateScripts(scripts, 0);
-	};
-	document.body.appendChild(script);
+        activateScripts(scripts, 0);
+    };
+    document.body.appendChild(script);
 
 } else {
-	var navbar = document.getElementById('navbar') ||
-		document.getElementsByClassName('flat-list2')[0] ||
-		document.querySelector('#main-menu > ul') ||
-		document.querySelector('nav > menu');
-	var li = document.createElement("li");
-	var a = document.createElement("a");
-	var token = document.querySelector('meta[name="csrf-token"]');
+    var navbar = document.getElementById('navbar') ||
+        document.getElementsByClassName('flat-list2')[0] ||
+        document.querySelector('#main-menu > ul') ||
+        document.querySelector('nav > menu');
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    var token = document.querySelector('meta[name="csrf-token"]');
 
-	token = token && token.content;
-	if (token) {
-		localStorage.setItem('auth_token', token);
-	}
+    token = token && token.content;
+    if (token) {
+        localStorage.setItem('auth_token', token);
+    }
 
-	if (document.querySelector('[src*="moe-legacy"]') || document.querySelector('html.action-post') || document.querySelector('[href*="/post/upload"]')) {
-		localStorage.setItem('current', 'moebooru');
-	} else if (document.querySelector('[href*="/uploads/new"]') || ~document.documentElement.innerHTML.indexOf('Running Danbooru')) {
-		localStorage.setItem('current', 'danbooru');
-	}
+    if (document.querySelector('[src*="moe-legacy"]') || document.querySelector('html.action-post') || document.querySelector('[href*="/post/upload"]')) {
+        localStorage.setItem('current', 'moebooru');
+    } else if (document.querySelector('[href*="/uploads/new"]') || ~document.documentElement.innerHTML.indexOf('Running Danbooru')) {
+        localStorage.setItem('current', 'danbooru');
+    }
 
-	a.style.fontWeight = 'bold';
-	a.appendChild(document.createTextNode('Mass Upload'));
-	a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
-	a.id = 'MassUploadLink'
+    a.style.fontWeight = 'bold';
+    a.appendChild(document.createTextNode('Mass Upload'));
+    a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
+    a.id = 'MassUploadLink'
 
-	if ( navbar && !!navbar.getElementById('MassUploadLink') ) {
-		li.appendChild(a);
-		navbar.appendChild(li);
-	} else {
-		a.style.display='block';
-		a.style.margin='auto';
-		a.style.width='105px';
-		document.body.insertBefore(a, document.body.firstChild);
-	}
+    if ( navbar && !!navbar.getElementById('MassUploadLink') ) {
+        li.appendChild(a);
+        navbar.appendChild(li);
+    } else {
+        a.style.display='block';
+        a.style.margin='auto';
+        a.style.width='105px';
+        document.body.insertBefore(a, document.body.firstChild);
+    }
 }

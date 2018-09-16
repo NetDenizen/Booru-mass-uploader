@@ -25,86 +25,86 @@ function IsJson(file) {
 }
 
 function PossibleStringFor(obj, lookup) {
-	if(!obj[lookup] || obj[lookup] == null) {
-		return '';
-	} else {
-		return obj[lookup];
-	}
+    if(!obj[lookup] || obj[lookup] == null) {
+        return '';
+    } else {
+        return obj[lookup];
+    }
 }
 
 function TitleFor(obj) {
-	return PossibleStringFor(obj, 'name');
+    return PossibleStringFor(obj, 'name');
 }
 
 function SourceFor(obj) {
-	return PossibleStringFor(obj, 'source');
+    return PossibleStringFor(obj, 'source');
 }
 
 function RatingFor(file) {
-	return obj['rating'];
+    return obj['rating'];
 }
 
 function TagsFor(file) {
-	var tags = [];
-	for (var i = 0; i < obj['tags'].length; ++i) {
-		tags.push( obj['tags'][i].toLowerCase() );
-	}
-	return ''.join(tags);
+    var tags = [];
+    for (var i = 0; i < obj['tags'].length; ++i) {
+        tags.push( obj['tags'][i].toLowerCase() );
+    }
+    return ''.join(tags);
 }
 
 function inFiles(name, files) {
-	for (var i = 0; i < files.length; ++i) {
-		if (files.name === name) {
-			return i;
-		}
-	}
-	return -1;
+    for (var i = 0; i < files.length; ++i) {
+        if (files.name === name) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 function GetReqVars(images, obj) {
-	var reqVars = [];
-	for(fileKey in obj) {
-		imageIdx = inFiles(fileKey);
-		if ( imageIdx == -1 ) {
-			alert('No image found for file name: "' + fileKey + '"');
-			continue;
-		} else if ( !IsUploadable(images[imageIdx]) ) {
-			alert('File "' + images[imageIdx] + '" not uploadable.');
-			continue;
-		}
-    	reqVars.push({
-			file:   images[imageIdx],
-    	    title:  TitleFor(obj[fileKey]),
-    	    rating: RatingFor(obj[fileKey]),
-    	    source: SourceFor(obj[fileKey]),
-    	    submit: 'Upload',
-    	    tags:   TagsFor(obj[fileKey]),
-    	    token:  localStorage.getItem('auth_token')
-		});
-	}
-	return reqVars;
+    var reqVars = [];
+    for(fileKey in obj) {
+        imageIdx = inFiles(fileKey);
+        if ( imageIdx == -1 ) {
+            alert('No image found for file name: "' + fileKey + '"');
+            continue;
+        } else if ( !IsUploadable(images[imageIdx]) ) {
+            alert('File "' + images[imageIdx] + '" not uploadable.');
+            continue;
+        }
+        reqVars.push({
+            file:   images[imageIdx],
+            title:  TitleFor(obj[fileKey]),
+            rating: RatingFor(obj[fileKey]),
+            source: SourceFor(obj[fileKey]),
+            submit: 'Upload',
+            tags:   TagsFor(obj[fileKey]),
+            token:  localStorage.getItem('auth_token')
+        });
+    }
+    return reqVars;
 }
 
 function GetFileInfo() {
-	var ImagePaths = $('images').files;
-	var JsonPaths = $('jsons').files;
-	var reqVars = [];
+    var ImagePaths = $('images').files;
+    var JsonPaths = $('jsons').files;
+    var reqVars = [];
 
-	for (var i = 0; i < JsonPaths.length; ++i) {
-		if ( !IsJson(JsonPaths[i]) ) {
+    for (var i = 0; i < JsonPaths.length; ++i) {
+        if ( !IsJson(JsonPaths[i]) ) {
             alert('File "' + JsonPaths[i] + '" Is not valid JSON.');
-			continue;
-		}
-		reader.readAsText(JsonPaths[i], 'UTF-8')
-		try {
-			obj = JSON.parse(reader.result)
-		} catch (e) {
+            continue;
+        }
+        reader.readAsText(JsonPaths[i], 'UTF-8')
+        try {
+            obj = JSON.parse(reader.result)
+        } catch (e) {
             alert('Failed to parse file "' + JsonPaths[i] + '"');
-			continue;
-		}
-		reqVars.concat( getReqVars(images, obj) );
-	}
-	return reqVars;
+            continue;
+        }
+        reqVars.concat( getReqVars(images, obj) );
+    }
+    return reqVars;
 }
 
 function FilesSelected() {
@@ -128,7 +128,7 @@ function FilesSelected() {
     upOptions.running = true;
 
     try {
-		var reqVars = GetFileInfo();
+        var reqVars = GetFileInfo();
         SendFiles(reqVars);
     } catch (e) {
         if (typeof e == 'string') {
