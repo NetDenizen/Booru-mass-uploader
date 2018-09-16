@@ -95,6 +95,7 @@ function GetFileInfo() {
             alert('File "' + JsonPaths[i] + '" Is not valid JSON.');
             continue;
         }
+		var reader = new FileReader();
         reader.readAsText(JsonPaths[i], 'UTF-8');
         try {
             obj = JSON.parse(reader.result);
