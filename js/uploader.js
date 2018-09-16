@@ -1,5 +1,5 @@
 var upOptions = {
-    running: false
+    running: false;
 };
 var current = localStorage.getItem(document.location.host) || localStorage.getItem('current') || 'gelbooru';
 var engine = $("engine");
@@ -95,9 +95,9 @@ function GetFileInfo() {
             alert('File "' + JsonPaths[i] + '" Is not valid JSON.');
             continue;
         }
-        reader.readAsText(JsonPaths[i], 'UTF-8')
+        reader.readAsText(JsonPaths[i], 'UTF-8');
         try {
-            obj = JSON.parse(reader.result)
+            obj = JSON.parse(reader.result);
         } catch (e) {
             alert('Failed to parse file "' + JsonPaths[i] + '"');
             continue;
@@ -266,7 +266,7 @@ function SendFile(reqVars, callback) {
                         } catch (any) {}
 
                         if (!!Number(existId)) {
-                            LogFailure(reqVars.file, 'image already exists <a href="index.php?page=post&s=view&id=' + existId + '" target="_blank">here</a>')
+                            LogFailure(reqVars.file, 'image already exists <a href="index.php?page=post&s=view&id=' + existId + '" target="_blank">here</a>');
                         } else {
                             LogFailure(reqVars.file, 'image has been deleted');
                         }
