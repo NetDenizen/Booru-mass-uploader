@@ -7,11 +7,6 @@ var engine = $("engine");
 engine.onchange = function () {
     current = this.value;
     $('current').textContent = current;
-    if (current != 'gelbooru') {
-        $('title').disable();
-    } else {
-        $('title').enable();
-    }
 };
 engine.selectedIndex = current == 'gelbooru' ? 0 : (current == 'moebooru' ? 1 : 2);
 engine.onchange();
