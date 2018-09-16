@@ -84,13 +84,15 @@ if (~document.location.href.indexOf('s=mass_upload')) {
     a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
     a.id = 'MassUploadLink'
 
-    if ( navbar && !navbar.getElementById('MassUploadLink') ) {
-        li.appendChild(a);
-        navbar.appendChild(li);
-    } else {
-        a.style.display='block';
-        a.style.margin='auto';
-        a.style.width='105px';
-        document.body.insertBefore(a, document.body.firstChild);
+    if( !document.getElementById('MassUploadLink') ){
+        if ( navbar && !navbar.getElementById('MassUploadLink') ) {
+            li.appendChild(a);
+            navbar.appendChild(li);
+        } else {
+            a.style.display='block';
+            a.style.margin='auto';
+            a.style.width='105px';
+            document.body.insertBefore(a, document.body.firstChild);
+        }
     }
 }
