@@ -7,11 +7,6 @@ var engine = $("engine");
 engine.onchange = function () {
     current = this.value;
     $('current').textContent = current;
-    if (current != 'gelbooru') {
-        $('title').disable();
-    } else {
-        $('title').enable();
-    }
 };
 engine.selectedIndex = current == 'gelbooru' ? 0 : (current == 'moebooru' ? 1 : 2);
 engine.onchange();
@@ -44,6 +39,7 @@ function TitleFor(obj) {
 function SourceFor(obj) {
 	return PossibleStringFor(obj, 'source');
 }
+<<<<<<< HEAD
 
 function RatingFor(file) {
 	return obj['rating'];
@@ -90,6 +86,54 @@ function GetReqVars(images, obj) {
 	return reqVars;
 }
 
+=======
+
+function RatingFor(file) {
+	return obj['rating'];
+}
+
+function TagsFor(file) {
+	var tags = [];
+	for (var i = 0; i < obj['tags'].length; ++i) {
+		tags.push( obj['tags'][i].toLowerCase() );
+	}
+	return ''.join(tags);
+}
+
+function inFiles(name, files) {
+	for (var i = 0; i < files.length; ++i) {
+		if (files.name === name) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+function GetReqVars(images, obj) {
+	var reqVars = [];
+	for(fileKey in obj) {
+		imageIdx = inFiles(fileKey);
+		if ( imageIdx == -1 ) {
+			alert('No image found for file name: "' + fileKey + '"');
+			continue;
+		} else if ( !IsUploadable(images[imageIdx]) ) {
+			alert('File "' + images[imageIdx] + '" not uploadable.');
+			continue;
+		}
+    	reqVars.push({
+			file:   images[imageIdx],
+    	    title:  TitleFor(obj[fileKey]),
+    	    rating: RatingFor(obj[fileKey]),
+    	    source: SourceFor(obj[fileKey]),
+    	    submit: 'Upload',
+    	    tags:   TagsFor(obj[fileKey]),
+    	    token:  localStorage.getItem('auth_token')
+		});
+	}
+	return reqVars;
+}
+
+>>>>>>> gh-pages
 function GetFileInfo() {
 	var ImagePaths = $('images').files;
 	var JsonPaths = $('jsons').files;
