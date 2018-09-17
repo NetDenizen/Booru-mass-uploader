@@ -117,9 +117,6 @@ document.documentElement.innerHTML='\
             font-weight: bold;\
         }\
 \
-        #tagsWr {\
-            padding-top: 0.5em;\
-        }\
     </style>\
     <script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/js/common-min.js"></script>\
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>\
