@@ -87,7 +87,7 @@ function GetReqVars(images, obj) {
 
 function ParseJSON(name, text) {
     try {
-        return JSON.parse(text); // TODO: Avoid using a global variable, just to make obj usable outside the debugger.
+        return $.parseJSON(text);
     } catch (e) {
         LogFailure(name, 'Failed to parse');
     }
