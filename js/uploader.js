@@ -108,8 +108,8 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        var result = reader.result;
-        var obj = ParseJSON(jsons[i], result);
+        result = reader.result;
+        obj = ParseJSON(jsons[i], result);
         if (obj === null) {
             continue;
         }
