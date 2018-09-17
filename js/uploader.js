@@ -97,8 +97,9 @@ function GetFileInfo() {
         }
 		var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
+		var obj;
         try {
-            var obj = JSON.parse(reader.result);
+            obj = JSON.parse(reader.result);
         } catch (e) {
             LogFailure(jsons[i].name, 'Failed to parse.');
             continue;
