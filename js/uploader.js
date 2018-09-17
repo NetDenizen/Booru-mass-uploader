@@ -87,7 +87,7 @@ function GetReqVars(images, obj) {
 
 function ParseJSON(name, text) {
     try {
-        return Object.assign( {}, JSON.parse(text) );
+        return JSON.stringify( JSON.parse(text) ).slice(0);
     } catch (e) {
         LogFailure(name, 'Failed to parse');
     }
@@ -106,8 +106,8 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        var ReaderResult = Object.assign("", reader.result);
-        var JSONObj = ParseJSON(jsons[i], ReaderResult);
+        var ReaderResult = reader.result.slice(0);
+        var JSONObj = JSON.parse( ParseJSON(jsons[i], ReaderResult) );
         if (JSONObj === null) {
             continue;
         }
