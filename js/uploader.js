@@ -104,14 +104,17 @@ function GetFileInfo() {
             continue;
         }
         var reader = new FileReader();
+        reader.onload = () => {
+          resolve(reader.result)
+        };
         reader.readAsText(jsons[i], 'UTF-8');
-		var obj = JSON.parse(reader.result);
-        //try {
-        //    obj = JSON.parse(reader.result);
-        //} catch (e) {
-        //    LogFailure(jsons[i], 'Failed to parse');
-        //    continue;
-        //}
+		var obj = null;
+        try {
+            obj = JSON.parse(reader.result);
+        } catch (e) {
+            LogFailure(jsons[i], 'Failed to parse');
+            continue;
+        }
         reqVars = reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
