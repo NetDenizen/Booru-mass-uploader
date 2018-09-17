@@ -107,7 +107,7 @@ function GetFileInfo() {
         reader.readAsText(jsons[i], 'UTF-8');
 		var obj = null;
         try {
-            obj = Object.assign( {}, JSON.parse(reader.result) );
+            obj = JSON.parse(reader.result);
         } catch (e) {
             LogFailure(jsons[i], 'Failed to parse');
             continue;
