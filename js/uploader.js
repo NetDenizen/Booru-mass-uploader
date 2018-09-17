@@ -110,6 +110,8 @@ function GetFileInfo() {
 }
 
 function FilesSelected() {
+	bat = [];
+    header = {};
     $('bat').hide();
 
     if (upOptions.running) {
