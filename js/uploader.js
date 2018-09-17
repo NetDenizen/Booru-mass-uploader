@@ -106,11 +106,11 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        var obj = ParseJSON(jsons[i], reader.result);
+        var obj = ParseJSON( jsons[i], reader.result.copy() );
         if (obj === null) {
             continue;
         }
-        reqVars = reqVars.concat( GetReqVars(images, obj) );
+        reqVars = reqVars.concat( GetReqVars( images, obj.copy() ) );
     }
     return reqVars;
 }
