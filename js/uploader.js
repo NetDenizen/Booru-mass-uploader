@@ -66,10 +66,10 @@ function GetReqVars(images, obj) {
     for(var fileKey in obj) {
         imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
-            LogFailureMessage('No image found in "' + fileKey + '".');
+            LogFailureMessage('No image found for file name: "' + fileKey + '".');
             continue;
         } else if ( !IsUploadable(images[imageIdx]) ) {
-            LogFailure(images[imageIdx].name, 'Not uploadable');
+            LogFailure(images[imageIdx], 'Not uploadable');
             continue;
         }
         reqVars.push({
@@ -92,16 +92,16 @@ function GetFileInfo() {
 
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
-            LogFailure(jsons[i].name, 'Not valid JSON');
+            LogFailure(jsons[i], 'Not valid JSON');
             continue;
         }
-		var reader = new FileReader();
+        var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-		var obj;
+        var obj;
         try {
             obj = JSON.parse(reader.result);
         } catch (e) {
-            LogFailure(jsons[i].name, 'Failed to parse');
+            LogFailure(jsons[i], 'Failed to parse');
             continue;
         }
         reqVars.concat( GetReqVars(images, obj) );
