@@ -160,7 +160,7 @@ document.documentElement.innerHTML='\
     Image files:\
     <input type="file" id="images" multiple="true" accept="image/*" onchange="onImagesSelect(event.target.files)"/><br>\
 </div>\
-<span id="selectStatus"></span>\
+<p id="selectStatus"></p>\
 <br>\
 <img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
 <p style="display: none;" id="infobar">You are <b id="loggedIn"></b> to a <b id="current"></b> site.</p>\
