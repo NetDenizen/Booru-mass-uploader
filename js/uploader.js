@@ -98,8 +98,6 @@ function GetFileInfo() {
     var images = $('images').files;
     var jsons = $('jsons').files;
     var reqVars = [];
-	var result = "";
-	var obj = null;
 
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
@@ -108,12 +106,12 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        result = reader.result;
-        obj = ParseJSON(jsons[i], result);
-        if (obj === null) {
+        var ReaderResult = reader.result;
+        var JSONObj = ParseJSON(jsons[i], ReaderResult);
+        if (JSONObj === null) {
             continue;
         }
-        reqVars = reqVars.concat( GetReqVars(images, obj) );
+        reqVars = reqVars.concat( GetReqVars(images, JSONObj) );
     }
     return reqVars;
 }
