@@ -52,7 +52,7 @@ function TagsFor(file) {
     return ''.join(tags);
 }
 
-function inFiles(name, files) {
+function InFiles(name, files) {
     for (var i = 0; i < files.length; ++i) {
         if (files.name === name) {
             return i;
@@ -64,7 +64,7 @@ function inFiles(name, files) {
 function GetReqVars(images, obj) {
     var reqVars = [];
     for(fileKey in obj) {
-        imageIdx = inFiles(fileKey);
+        imageIdx = InFiles(fileKey);
         if ( imageIdx == -1 ) {
             alert('No image found for file name: "' + fileKey + '"');
             continue;
@@ -103,7 +103,7 @@ function GetFileInfo() {
             alert('Failed to parse file "' + JsonPaths[i] + '"');
             continue;
         }
-        reqVars.concat( getReqVars(ImagePaths, obj) );
+        reqVars.concat( GetReqVars(ImagePaths, obj) );
     }
     return reqVars;
 }
