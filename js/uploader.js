@@ -49,7 +49,7 @@ function TagsFor(obj) {
     for (var k in obj['tags']) {
         tags.push( k.toLowerCase() );
     }
-    return tags.join('');
+    return tags.join(' ');
 }
 
 function InFiles(name, files) {
@@ -66,7 +66,7 @@ function GetReqVars(images, obj) {
     for(var fileKey in obj) {
         imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
-            LogFailure(fileKey, 'No image foun.');
+            LogFailureMessage('No image found in "' + fileKey + '".');
             continue;
         } else if ( !IsUploadable(images[imageIdx]) ) {
             LogFailure(images[imageIdx].name, 'Not uploadable');
@@ -221,12 +221,16 @@ function LogSuccess(file) {
     Log('success', 'Image ' + file.name + ' was successfully uploaded.');
 }
 
-function LogFailure(file, reason) {
-    Log('error', 'Couldn\'t upload ' + file.name + ': ' + reason + '.');
-
-    batch(file, reason);
+function LogFailureMessage(message) {
+    Log('error', message);
 
     upOptions.stats.failed++;
+}
+
+function LogFailure(file, reason) {
+    LogFailureMsg('Couldn\'t upload ' + file.name + ': ' + reason + '.');
+
+    batch(file, reason);
 }
 
 function SendFiles(reqVars, index) {
