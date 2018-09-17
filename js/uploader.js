@@ -87,7 +87,7 @@ function GetReqVars(images, obj) {
 
 function ParseJSON(name, text) {
     try {
-        return $.parseJSON(text);
+        return JSON.parse(text);
     } catch (e) {
         LogFailure(name, 'Failed to parse');
     }
