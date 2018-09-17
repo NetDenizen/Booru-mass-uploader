@@ -46,7 +46,7 @@ function RatingFor(obj) {
 
 function TagsFor(obj) {
     var tags = [];
-    for ( var k in Object.getOwnPropertyNames(obj['tags']) ) {
+    for (var k in obj['tags']) {
         tags.push( k.toLowerCase() );
     }
     return tags.join('');
