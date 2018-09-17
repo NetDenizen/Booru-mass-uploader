@@ -105,7 +105,7 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.onload = () => {
-          resolve(reader.result)
+            Promise.resolve(reader.result);
         };
         reader.readAsText(jsons[i], 'UTF-8');
 		var obj = null;
