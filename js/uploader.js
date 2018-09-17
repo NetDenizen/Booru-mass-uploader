@@ -91,15 +91,14 @@ function GetFileInfo() {
     var reqVars = [];
 
     for (var i = 0; i < jsons.length; ++i) {
-        var obj;
-        var reader = new FileReader();
         if ( !IsJson(jsons[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
             continue;
         }
+        var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
         try {
-            obj = JSON.parse(reader.result);
+            obj = JSON.parse(reader.result); // TODO: Avoid using a global variable, just to make obj usable outside the debugger.
         } catch (e) {
             LogFailure(jsons[i], 'Failed to parse');
             continue;
