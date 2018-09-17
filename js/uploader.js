@@ -85,6 +85,15 @@ function GetReqVars(images, obj) {
     return reqVars;
 }
 
+function ParseJSON(name, text) {
+    try {
+        return JSON.parse(text); // TODO: Avoid using a global variable, just to make obj usable outside the debugger.
+    } catch (e) {
+        LogFailure(name, 'Failed to parse');
+    }
+    return null;
+}
+
 function GetFileInfo() {
     var images = $('images').files;
     var jsons = $('jsons').files;
@@ -97,10 +106,8 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        try {
-            obj = JSON.parse(reader.result); // TODO: Avoid using a global variable, just to make obj usable outside the debugger.
-        } catch (e) {
-            LogFailure(jsons[i], 'Failed to parse');
+        var obj = ParseJSON(jsons[i], reader.result);
+        if (obj === null) {
             continue;
         }
         reqVars = reqVars.concat( GetReqVars(images, obj) );
