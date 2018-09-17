@@ -40,16 +40,16 @@ function SourceFor(obj) {
     return PossibleStringFor(obj, 'source');
 }
 
-function RatingFor(file) {
+function RatingFor(obj) {
     return obj['rating'];
 }
 
-function TagsFor(file) {
+function TagsFor(obj) {
     var tags = [];
     for (var i = 0; i < obj['tags'].length; ++i) {
         tags.push( obj['tags'][i].toLowerCase() );
     }
-    return ''.join(tags);
+    return tags.join('');
 }
 
 function InFiles(name, files) {
@@ -98,7 +98,7 @@ function GetFileInfo() {
 		var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
         try {
-            obj = JSON.parse(reader.result);
+            var obj = JSON.parse(reader.result);
         } catch (e) {
             LogFailure('Failed to parse file "' + jsons[i].name + '"');
             continue;
