@@ -104,7 +104,7 @@ function GetFileInfo() {
             LogFailure(jsons[i], 'Failed to parse');
             continue;
         }
-        reqVars.concat( GetReqVars(images, obj) );
+        reqVars = reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
 }
