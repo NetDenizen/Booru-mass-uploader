@@ -46,8 +46,8 @@ function RatingFor(obj) {
 
 function TagsFor(obj) {
     var tags = [];
-    for (var i = 0; i < obj['tags'].length; ++i) {
-        tags.push( obj['tags'][i].toLowerCase() );
+    for ( var k in Object.keys(obj['tags'].length) ) {
+        tags.push( k.toLowerCase() );
     }
     return tags.join('');
 }
@@ -66,10 +66,10 @@ function GetReqVars(images, obj) {
     for(var fileKey in obj) {
         imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
-            LogFailure(fileKey, 'No image found.');
+            LogFailure(fileKey, 'No image foun.');
             continue;
         } else if ( !IsUploadable(images[imageIdx]) ) {
-            LogFailure(images[imageIdx].name, 'Not uploadable.');
+            LogFailure(images[imageIdx].name, 'Not uploadable');
             continue;
         }
         reqVars.push({
@@ -92,7 +92,7 @@ function GetFileInfo() {
 
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
-            LogFailure(jsons[i].name, 'Not valid JSON.');
+            LogFailure(jsons[i].name, 'Not valid JSON');
             continue;
         }
 		var reader = new FileReader();
@@ -101,7 +101,7 @@ function GetFileInfo() {
         try {
             obj = JSON.parse(reader.result);
         } catch (e) {
-            LogFailure(jsons[i].name, 'Failed to parse.');
+            LogFailure(jsons[i].name, 'Failed to parse');
             continue;
         }
         reqVars.concat( GetReqVars(images, obj) );
