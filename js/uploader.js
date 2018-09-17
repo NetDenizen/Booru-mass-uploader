@@ -91,13 +91,13 @@ function GetFileInfo() {
     var reqVars = [];
 
     for (var i = 0; i < jsons.length; ++i) {
+        var obj;
+        var reader = new FileReader();
         if ( !IsJson(jsons[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
             continue;
         }
-        var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        var obj;
         try {
             obj = JSON.parse(reader.result);
         } catch (e) {
