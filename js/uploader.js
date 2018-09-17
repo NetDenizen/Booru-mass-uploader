@@ -66,10 +66,10 @@ function GetReqVars(images, obj) {
     for(var fileKey in obj) {
         imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
-            alert('No image found for file name: "' + fileKey + '"');
+            LogFailure('No image found for file name: "' + fileKey + '"');
             continue;
         } else if ( !IsUploadable(images[imageIdx]) ) {
-            alert('File "' + images[imageIdx] + '" not uploadable.');
+            LogFailure('File "' + images[imageIdx].name + '" not uploadable.');
             continue;
         }
         reqVars.push({
@@ -86,24 +86,24 @@ function GetReqVars(images, obj) {
 }
 
 function GetFileInfo() {
-    var ImagePaths = $('images').files;
-    var JsonPaths = $('jsons').files;
+    var images = $('images').files;
+    var jsons = $('jsons').files;
     var reqVars = [];
 
-    for (var i = 0; i < JsonPaths.length; ++i) {
-        if ( !IsJson(JsonPaths[i]) ) {
-            alert('File "' + JsonPaths[i] + '" Is not valid JSON.');
+    for (var i = 0; i < jsons.length; ++i) {
+        if ( !IsJson(jsons[i]) ) {
+            LogFailure('File "' + jsons[i].name + '" Is not valid JSON.');
             continue;
         }
 		var reader = new FileReader();
-        reader.readAsText(JsonPaths[i], 'UTF-8');
+        reader.readAsText(jsons[i], 'UTF-8');
         try {
             obj = JSON.parse(reader.result);
         } catch (e) {
-            alert('Failed to parse file "' + JsonPaths[i] + '"');
+            LogFailure('Failed to parse file "' + jsons[i].name + '"');
             continue;
         }
-        reqVars.concat( GetReqVars(ImagePaths, obj) );
+        reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
 }
