@@ -228,7 +228,7 @@ function LogFailureMessage(message) {
 }
 
 function LogFailure(file, reason) {
-    LogFailureMsg('Couldn\'t upload ' + file.name + ': ' + reason + '.');
+    LogFailureMessage('Couldn\'t upload ' + file.name + ': ' + reason + '.');
 
     batch(file, reason);
 }
