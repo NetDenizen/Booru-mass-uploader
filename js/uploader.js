@@ -95,33 +95,26 @@ function ParseJSON(name, text) {
 }
 
 function GetFileInfo() {
-    var images = $('images').files;
     var jsons = $('jsons').files;
-    var ReaderOutput = [];
     var reqVars = [];
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
-            ReaderOutput.push(null)
             continue;
         }
         var reader = new FileReader();
         reader.onload = function(event) {
-            ReaderOutput.push(event.target.result);
+            var ReaderText = event.target.result;
+		    var obj = null;
+            try {
+                obj = JSON.parse(ReaderText);
+            } catch (e) {
+                LogFailure($('jsons').files[i], 'Failed to parse');
+                return;
+            }
+            reqVars = reqVars.concat( GetReqVars($('images').files, obj) );
         };
-        reader.readAsText(jsons[i], 'UTF-8');
-    }
-    for (var i = 0; i < ReaderOutput.length; ++i) {
-        if (ReaderOutput[i] === null) {
-            continue;
-        }
-        var obj = null;
-        try {
-            obj = JSON.parse(ReaderOutput[i]);
-        } catch (e) {
-            LogFailure(jsons[i], 'Failed to parse');
-        }
-        reqVars = reqVars.concat( GetReqVars(images, obj) );
+        reader.readAsText($('jsons').files[i], 'UTF-8');
     }
     return reqVars;
 }
