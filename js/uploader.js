@@ -54,7 +54,7 @@ function TagsFor(file) {
 
 function InFiles(name, files) {
     for (var i = 0; i < files.length; ++i) {
-        if (files.name === name) {
+        if (files[i].name === name) {
             return i;
         }
     }
@@ -63,8 +63,8 @@ function InFiles(name, files) {
 
 function GetReqVars(images, obj) {
     var reqVars = [];
-    for(fileKey in obj) {
-        imageIdx = InFiles(fileKey);
+    for(var fileKey in obj) {
+        imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
             alert('No image found for file name: "' + fileKey + '"');
             continue;
