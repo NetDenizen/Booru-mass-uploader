@@ -129,7 +129,6 @@ document.documentElement.innerHTML='\
 <p class="intro">This script allows you to mass-upload images to imageboard sites running *booru software.\
     It is designed to work in conjunction with the .JSON files output from\
     <a href="https://github.com/NetDenizen/booru-wizard">https://github.com/NetDenizen/booru-wizard</a>\
-    Select a number of .JSON and image files.\
     The .JSON files determine which image files to upload, and what metadata they should have.</p>\
 \
 \
@@ -156,13 +155,12 @@ document.documentElement.innerHTML='\
 <div class="para" style="padding:2px 1em;text-align:center;">\
     .JSON files:\
     <input type="file" id="jsons" multiple="true" accept="application/json" onchange="onJsonsSelect(event.target.files)"/><br>\
-    <span id="selectStatus"></span>\
 </div>\
 <div class="para" style="padding:2px 1em;text-align:center;">\
-    Input Directory:\
+    Image files:\
     <input type="file" id="images" multiple="true" accept="image/*" onchange="onImagesSelect(event.target.files)"/><br>\
-    <span id="selectStatus"></span>\
 </div>\
+<span id="selectStatus"></span>\
 <br>\
 <img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif" id="spinner" alt="loading"/>\
 <p style="display: none;" id="infobar">You are <b id="loggedIn"></b> to a <b id="current"></b> site.</p>\
