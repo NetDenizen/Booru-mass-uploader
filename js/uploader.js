@@ -98,6 +98,8 @@ function GetFileInfo() {
     var images = $('images').files;
     var jsons = $('jsons').files;
     var reqVars = [];
+	var result = "";
+	var obj = null;
 
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
@@ -106,17 +108,8 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-		// XXX: It turns out these variables were not already made 'configurable'.
         var result = reader.result;
-        Object.defineProperty(this, 'result', {enumerable:true,
-                                               writable:true,
-                                               configurable:true
-                                              });
         var obj = ParseJSON(jsons[i], result);
-        Object.defineProperty(this, 'obj', {enumerable:true,
-                                            writable:true,
-                                            configurable:true
-                                           });
         if (obj === null) {
             continue;
         }
