@@ -98,7 +98,6 @@ function GetFileInfo() {
     var images = $('images').files;
     var jsons = $('jsons').files;
     var reqVars = [];
-
     for (var i = 0; i < jsons.length; ++i) {
         if ( !IsJson(jsons[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
@@ -106,12 +105,14 @@ function GetFileInfo() {
         }
         var reader = new FileReader();
         reader.readAsText(jsons[i], 'UTF-8');
-        var ReaderResult = reader.result.slice(0);
-        var JSONObj = JSON.parse( ParseJSON(jsons[i], ReaderResult) );
-        if (JSONObj === null) {
+		var obj = null;
+        try {
+            obj = Object.assign( {}, JSON.parse(reader.result) );
+        } catch (e) {
+            LogFailure(jsons[i], 'Failed to parse');
             continue;
         }
-        reqVars = reqVars.concat( GetReqVars(images, JSONObj) );
+        reqVars = reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
 }
