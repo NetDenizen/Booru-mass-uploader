@@ -104,13 +104,14 @@ function GetFileInfo() {
             continue;
         }
         var reader = new FileReader();
+		var ReaderText = "";
         reader.onload = () => {
-            Promise.resolve(reader.result);
+            ReaderText = reader.result;
         };
         reader.readAsText(jsons[i], 'UTF-8');
 		var obj = null;
         try {
-            obj = JSON.parse(reader.result);
+            obj = JSON.parse(ReaderText);
         } catch (e) {
             LogFailure(jsons[i], 'Failed to parse');
             continue;
