@@ -64,7 +64,7 @@ function InFiles(name, files) {
 function GetReqVars(images, obj) {
     var reqVars = [];
     for(var fileKey in obj) {
-        imageIdx = InFiles(fileKey, images);
+        var imageIdx = InFiles(fileKey, images);
         if ( imageIdx == -1 ) {
             LogFailureMessage('No image found for file name: "' + fileKey + '".');
             continue;
@@ -110,8 +110,6 @@ function GetFileInfo() {
 }
 
 function FilesSelected() {
-    bat = [];
-    header = {};
     $('bat').hide();
 
     if (upOptions.running) {
@@ -139,7 +137,7 @@ function FilesSelected() {
     }
 }
 
-function OnFirstUpload(files) {
+function OnFirstUpload() {
     SaveLastSettings();
     Log('info', 'Started uploading ' + upOptions.stats.total + ' files.');
     UpdateUpProgress(0);
@@ -195,7 +193,7 @@ function UploadOptions() {
 }
 
 function Log(className, msg) {
-    var now = new Date;
+    var now = new Date();
     var line = document.createElement('div');
 
     msg = '[' + now.getHours() + ':' + now.getMinutes() + '] ' + msg;
@@ -235,15 +233,15 @@ function LogFailure(file, reason) {
 
 function SendFiles(reqVars, index) {
     index = index || 0;
-    if (index < files.length) {
+    if (index < reqVars.length) {
         if (index == 0) {
-            upOptions.stats.total = files.length;
-            OnFirstUpload(files);
+            upOptions.stats.total = reqVars.length;
+            OnFirstUpload();
         }
         SendFile(reqVars[index], function () {
             SendFiles(reqVars, index + 1);
         });
-        $set('status', 'Uploading #' + (index + 1) + ' image out of ' + files.length + '...');
+        $set('status', 'Uploading #' + (index + 1) + ' image out of ' + reqVars.length + '...');
     } else {
         OnAllUploaded();
     }
