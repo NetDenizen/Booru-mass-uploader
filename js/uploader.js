@@ -163,6 +163,7 @@ function OnAllUploaded() {
         image.src = baseCtrUpdURL + ourBooru[1] + '&rand=' + Math.random();
     }
     $('jsons').value = '';
+    $('images').value = '';
 }
 
 function UploadOptions() {
