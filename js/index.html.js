@@ -58,6 +58,9 @@ document.documentElement.innerHTML='\
             text-align: center;\
             color: blue;\
         }\
+        #selectStatus {\
+            text-align: center;\
+        }\
 \
         #progressWr {\
             margin-top: 5px;\
