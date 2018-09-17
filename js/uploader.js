@@ -104,19 +104,18 @@ function GetFileInfo() {
             continue;
         }
         var reader = new FileReader();
-		var ReaderText = "";
         reader.onload = function(event) {
-            ReaderText = event.target.result;
+            var ReaderText = event.target.result;
+		    var obj = null;
+            try {
+                obj = JSON.parse(ReaderText);
+            } catch (e) {
+                LogFailure(jsons[i], 'Failed to parse');
+                return;
+            }
+            reqVars = reqVars.concat( GetReqVars(images, obj) );
         };
         reader.readAsText(jsons[i], 'UTF-8');
-		var obj = null;
-        try {
-            obj = JSON.parse(ReaderText);
-        } catch (e) {
-            LogFailure(jsons[i], 'Failed to parse');
-            continue;
-        }
-        reqVars = reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
 }
