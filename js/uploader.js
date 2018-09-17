@@ -95,7 +95,6 @@ function ParseJSON(name, text) {
 }
 
 function GetFileInfo() {
-    var images = $('images').files;
     var jsons = $('jsons').files;
     var reqVars = [];
     for (var i = 0; i < jsons.length; ++i) {
@@ -110,12 +109,12 @@ function GetFileInfo() {
             try {
                 obj = JSON.parse(ReaderText);
             } catch (e) {
-                LogFailure(jsons[i], 'Failed to parse');
+                LogFailure($('jsons').files[i], 'Failed to parse');
                 return;
             }
-            reqVars = reqVars.concat( GetReqVars(images, obj) );
+            reqVars = reqVars.concat( GetReqVars($('images').files, obj) );
         };
-        reader.readAsText(jsons[i], 'UTF-8');
+        reader.readAsText($('jsons').files[i], 'UTF-8');
     }
     return reqVars;
 }
