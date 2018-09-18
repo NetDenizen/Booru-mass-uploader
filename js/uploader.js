@@ -369,8 +369,9 @@ function onJsonsSelect(files) {
     var images = $('images').files;
     ReaderOutput = [];
     function readNext(idx) {
-        if ( !IsJson(ReaderOutput[idx]) ) {
-            LogFailure(jsons[i], 'Not valid JSON');
+        if ( !IsJson(jsons[idx]) ) {
+            LogFailure(jsons[idx], 'Not valid JSON');
+            ReaderOutput.push(null);
             if (idx < jsons.length-1) {
                 readNext(idx+1);
             }
