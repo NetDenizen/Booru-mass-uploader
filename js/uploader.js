@@ -348,9 +348,6 @@ function SendFile(reqVars, callback) {
         }
     }
 
-    formData.append(boorus[current].fields.file, reqVars.file);
-    formData.append('filename', reqVars.file.name);
-
     xhr.open('POST', upOptions.uploadURL);
     xhr.send(formData);
 }
