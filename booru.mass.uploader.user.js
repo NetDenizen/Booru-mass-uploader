@@ -81,7 +81,12 @@ if (~document.location.href.indexOf('s=mass_upload')) {
 
     a.style.fontWeight = 'bold';
     a.appendChild(document.createTextNode('Mass Upload'));
-    a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
+	if ( (document.location.protocol === '80' && document.location.protocol === 'http') ||
+		 (document.location.protocol === '443' && document.location.protocol === 'https') ) {
+        a.href = document.location.protocol + '//' + document.location.hostname + '/index.php?page=post&s=mass_upload';
+    } else {
+        a.href = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/index.php?page=post&s=mass_upload';
+	}
     a.id = 'MassUploadLink';
 
     if( !document.getElementById('MassUploadLink') ){
