@@ -89,14 +89,10 @@ function GetReqVars(images, obj) {
 
 function GetFileInfo() {
     var jsons = $('jsons').files;
-	var images = $('images').files;
+    var images = $('images').files;
     var reqVars = [];
     for (var i = 0; i < ReaderOutput.length; ++i) {
-        if ( !IsJson(ReaderOutput[i]) ) {
-            LogFailure(jsons[i], 'Not valid JSON');
-            continue;
-        }
-		var obj = null;
+        var obj = null;
         try {
             obj = JSON.parse(ReaderOutput[i]);
         } catch (e) {
@@ -370,23 +366,31 @@ function onImagesSelect(files) {
 function onJsonsSelect(files) {
     $set('selectStatus','(All files with MIME types other than <tt>application/json</tt> and\n\textension other than <tt>json</tt> will be skipped)');
     var jsons = $('jsons').files;
-	var images = $('images').files;
-	ReaderOutput = [];
+    var images = $('images').files;
+    ReaderOutput = [];
     function readNext(idx) {
-        var reader = new FileReader();
-		try {
-            reader.onload = function(){
-                ReaderOutput.push(this.result);
+        if ( !IsJson(ReaderOutput[idx]) ) {
+            LogFailure(jsons[i], 'Not valid JSON');
+            if (idx < jsons.length-1) {
+                readNext(idx+1);
+            }
+        }
+        else {
+            var reader = new FileReader();
+            try {
+                reader.onload = function(){
+                    ReaderOutput.push(this.result);
 
-                if (idx < jsons.length-1) {
-                    readNext(idx+1);
-				}
-            };
-            reader.readAsText(jsons[idx]);
-		}
-		catch (err) {
-            LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
-            ReaderOutput.push(null);
+                    if (idx < jsons.length-1) {
+                        readNext(idx+1);
+                    }
+                };
+                reader.readAsText(jsons[idx]);
+            }
+            catch (err) {
+                LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
+                ReaderOutput.push(null);
+            }
         }
     }
     readNext(0);
