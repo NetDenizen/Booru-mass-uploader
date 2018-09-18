@@ -167,7 +167,7 @@ function UploadOptions() {
         ticket: GetCookie('pass_hash')
     };
     auth.use = (auth.userID || GetCookie('login')) && auth.ticket;
-    var uploadURL = document.location.protocol + '//' + document.location.hostname + boorus[current].uploadPath;
+    var uploadURL = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + boorus[current].uploadPath;
 
     $('spinner').hide();
     $('infobar').show();
@@ -233,7 +233,7 @@ function SendFiles(reqVars, index) {
     index = index || 0;
     if (index < reqVars.length) {
         if (index == 0) {
-            upOptions.stats.total = reqVars.length;
+            upOptions.stats.total = ReaderOutput.length;
             OnFirstUpload();
         }
         SendFile(reqVars[index], function () {
