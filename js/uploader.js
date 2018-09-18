@@ -85,36 +85,42 @@ function GetReqVars(images, obj) {
     return reqVars;
 }
 
-function ParseJSON(name, text) {
-    try {
-        return JSON.stringify( JSON.parse(text) ).slice(0);
-    } catch (e) {
-        LogFailure(name, 'Failed to parse');
-    }
-    return null;
-}
-
 function GetFileInfo() {
     var jsons = $('jsons').files;
+	var images = $('images').files;
+	var ReaderOutput = [];
     var reqVars = [];
-    for (var i = 0; i < jsons.length; ++i) {
-        if ( !IsJson(jsons[i]) ) {
+    function readNext(idx) {
+        var reader = new FileReader();
+		try {
+            reader.onload = function(){
+                ReaderOutput.push(this.result);
+
+                if (idx < jsons.length-1) {
+                    readNext(idx+1);
+				}
+            };
+            reader.readAsText(jsons[idx]);
+		}
+		catch (err) {
+            LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
+            ReaderOutput.push(null);
+        }
+    }
+    readNext(0);
+    for (var i = 0; i < ReaderOutput.length; ++i) {
+        if ( !IsJson(ReaderOutput[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
             continue;
         }
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            var ReaderText = event.target.result;
-		    var obj = null;
-            try {
-                obj = JSON.parse(ReaderText);
-            } catch (e) {
-                LogFailure($('jsons').files[i], 'Failed to parse');
-                return;
-            }
-            reqVars = reqVars.concat( GetReqVars($('images').files, obj) );
-        };
-        reader.readAsText($('jsons').files[i], 'UTF-8');
+		var obj = null;
+        try {
+            obj = JSON.parse(ReaderText);
+        } catch (e) {
+            LogFailure(jsons[i], 'Failed to parse');
+            continue;
+        }
+        reqVars = reqVars.concat( GetReqVars(images, obj) );
     }
     return reqVars;
 }
