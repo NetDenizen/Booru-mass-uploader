@@ -374,20 +374,17 @@ function onJsonsSelect(files) {
             if (idx < jsons.length-1) {
                 readNext(idx+1);
             }
-        }
-        else {
+        } else {
             var reader = new FileReader();
             try {
                 reader.onload = function(){
                     ReaderOutput.push(this.result);
-
                     if (idx < jsons.length-1) {
                         readNext(idx+1);
                     }
                 };
                 reader.readAsText(jsons[idx]);
-            }
-            catch (err) {
+            } catch (err) {
                 LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
                 ReaderOutput.push(null);
             }
