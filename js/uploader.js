@@ -4,6 +4,8 @@ var upOptions = {
 var current = localStorage.getItem(document.location.host) || localStorage.getItem('current') || 'gelbooru';
 var engine = $("engine");
 
+var ReaderOutput = [];
+
 engine.onchange = function () {
     current = this.value;
     $('current').textContent = current;
@@ -88,26 +90,7 @@ function GetReqVars(images, obj) {
 function GetFileInfo() {
     var jsons = $('jsons').files;
 	var images = $('images').files;
-	var ReaderOutput = [];
     var reqVars = [];
-    function readNext(idx) {
-        var reader = new FileReader();
-		try {
-            reader.onload = function(){
-                ReaderOutput.push(this.result);
-
-                if (idx < jsons.length-1) {
-                    readNext(idx+1);
-				}
-            };
-            reader.readAsText(jsons[idx]);
-		}
-		catch (err) {
-            LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
-            ReaderOutput.push(null);
-        }
-    }
-    readNext(0);
     for (var i = 0; i < ReaderOutput.length; ++i) {
         if ( !IsJson(ReaderOutput[i]) ) {
             LogFailure(jsons[i], 'Not valid JSON');
@@ -386,4 +369,25 @@ function onImagesSelect(files) {
 
 function onJsonsSelect(files) {
     $set('selectStatus','(All files with MIME types other than <tt>application/json</tt> and\n\textension other than <tt>json</tt> will be skipped)');
+    var jsons = $('jsons').files;
+	var images = $('images').files;
+	ReaderOutput = [];
+    function readNext(idx) {
+        var reader = new FileReader();
+		try {
+            reader.onload = function(){
+                ReaderOutput.push(this.result);
+
+                if (idx < jsons.length-1) {
+                    readNext(idx+1);
+				}
+            };
+            reader.readAsText(jsons[idx]);
+		}
+		catch (err) {
+            LogFailureMessage('Error reading JSON file: "' + jsons[idx] + '" Reason: "' + err + '"');
+            ReaderOutput.push(null);
+        }
+    }
+    readNext(0);
 }
