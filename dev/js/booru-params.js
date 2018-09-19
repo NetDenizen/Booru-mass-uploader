@@ -1,0 +1,43 @@
+var boorus = {
+	gelbooru: {
+		uploadPath: '/index.php?page=post&s=add',
+		fields:     {
+			file:   'upload',
+			source: 'source',
+			title:  'title',
+			tags:   'tags',
+			rating: 'rating',
+			submit: 'submit'
+		}
+	},
+	moebooru: {
+		uploadPath: '/post/create.json',
+		fields:     {
+			file:   'post[file]',
+			parent: 'post[parent_id]',
+			rating: 'post[rating]',
+			source: 'post[source]',
+			submit: 'commit',
+			tags:   'post[tags]',
+			token:  'authenticity_token'
+		}
+	},
+	danbooru: {
+		uploadPath: '/uploads.json',
+		fields:     {
+			file:   'upload[file]',
+			parent: 'upload[parent_id]',
+			rating: 'upload[rating]',
+			source: 'upload[source]',
+			submit: 'commit',
+			tags:   'upload[tag_string]',
+			token:  'authenticity_token'
+		}
+	},
+	szurubooru: {
+		uploadPath: '/api/uploads',
+		fields:     {
+			file:   'content'
+		}
+	}
+};
