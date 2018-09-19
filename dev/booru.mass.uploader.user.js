@@ -1,22 +1,22 @@
 // ==UserScript==
 // @name        Booru Mass Uploader for Booru Wizard (Development Version)
-// @description	Add ability to bulk upload images to your booru; meant to be used in conjunction with Booru wizard at: https://github.com/NetDenizen/booru-wizard Original by Seedmanc. This is the development version, which represents the current non-stable snapshot of the code.
-// @namespace 	https://github.com/NetDenizen/Booru-mass-uploader
+// @description Add ability to bulk upload images to your booru; meant to be used in conjunction with Booru wizard at: https://github.com/NetDenizen/booru-wizard Original by Seedmanc. This is the development version, which represents the current non-stable snapshot of the code.
+// @namespace   https://github.com/NetDenizen/Booru-mass-uploader
 // @version     0.2
-// @author		NetDeinzen
+// @author      NetDeinzen
 // @include     http*://*.booru.org/index.php*
 // @include     http://rule34.xxx/index.php*
-// @include 	https://gelbooru.com/index.php*
+// @include     https://gelbooru.com/index.php*
 // @include     http://safebooru.org/index.php*
-// @include		https://moe.dev.myconan.net/*
-// @include		http://behoimi.org/*
-// @include		https://chan.sankakucomplex.com/*
-// @include		http*://*atfbooru.ninja/*
-// @include		http://danbooru.donmai.us/*
-// @exclude		*.png
-// @exclude		*.jp*g
-// @exclude		*.gif
-// @exclude		*.webm
+// @include     https://moe.dev.myconan.net/*
+// @include     http://behoimi.org/*
+// @include     https://chan.sankakucomplex.com/*
+// @include     http*://*atfbooru.ninja/*
+// @include     http://danbooru.donmai.us/*
+// @exclude     *.png
+// @exclude     *.jp*g
+// @exclude     *.gif
+// @exclude     *.webm
 
 // you can add any boorus of your choice by following the pattern
 
