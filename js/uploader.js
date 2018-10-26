@@ -49,7 +49,12 @@ function RatingFor(obj) {
 function TagsFor(obj) {
     var tags = [];
     for (var k in obj['tags']) {
-        tags.push( k.toLowerCase() );
+        tags.push(k);
+    }
+    for (var s in obj['TagStrings']) {
+        for ( var t in s.split(' ') ) {
+            tags.push(t);
+        }
     }
     return tags.join(' ');
 }
