@@ -51,7 +51,7 @@ function TagsFor(obj) {
     for (var k in obj['tags']) {
         tags.push(k);
     }
-    for (var si = 0; si < TagStrings.length; ++si) {
+    for (var si = 0; si < obj['TagStrings'].length; ++si) {
         var SplitTags = obj['TagStrings'][si].split(' ');
         for (var ti = 0; ti < SplitTags.length; ++ti) {
             if (tags.indexOf(SplitTags[ti]) === -1) {
