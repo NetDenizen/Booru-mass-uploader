@@ -51,11 +51,11 @@ function TagsFor(obj) {
     for (var k in obj['tags']) {
         tags.push(k);
     }
-    for (var s in obj['TagStrings']) {
-        var SplitTags = s.split(' ');
-        for (var i = 0; i < SplitTags.length; ++i) {
-            if (tags.indexOf(SplitTags[i]) === -1) {
-                tags.push(SplitTags[i]);
+    for (var si = 0; si < TagStrings.length; ++si) {
+        var SplitTags = obj['TagStrings'][si].split(' ');
+        for (var ti = 0; ti < SplitTags.length; ++ti) {
+            if (tags.indexOf(SplitTags[ti]) === -1) {
+                tags.push(SplitTags[ti]);
             }
         }
     }
