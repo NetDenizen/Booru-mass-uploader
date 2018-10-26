@@ -52,7 +52,8 @@ function TagsFor(obj) {
         tags.push(k);
     }
     for (var s in obj['TagStrings']) {
-        for ( var t in s.split(' ') ) {
+		var tags = s.split(' ');
+        for (var t in tags) {
             tags.push(t);
         }
     }
