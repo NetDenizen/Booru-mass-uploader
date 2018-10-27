@@ -10,4 +10,4 @@ It can be downloaded here: https://netdenizen.github.io/Booru-mass-uploader/boor
 
 Here is a screenshot of what the interface will look like.
 
-![screenshot](https://i.imgur.com/g6AxTS9.png)
+![screenshot](https://i.imgur.com/3GWOPJK.png)
