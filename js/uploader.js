@@ -47,10 +47,10 @@ function RatingFor(obj) {
 }
 
 function TagsObjFor(obj, tags) {
-	var TagsObj = obj['tags'];
-	if (!TagsObj) {
-		return;
-	}
+    var TagsObj = obj['tags'];
+    if (!TagsObj) {
+        return;
+    }
     for (var k in TagsObj) {
         if (tags.indexOf(k) === -1) {
             tags.push(k);
@@ -59,10 +59,10 @@ function TagsObjFor(obj, tags) {
 }
 
 function TagStringsFor(obj, tags) {
-	var TagStrings = obj['TagStrings'];
-	if (!TagStrings) {
-		return;
-	}
+    var TagStrings = obj['TagStrings'];
+    if (!TagStrings) {
+        return;
+    }
     for (var si = 0; si < TagStrings.length; ++si) {
         var SplitTags = TagStrings[si].split(' ');
         for (var ti = 0; ti < SplitTags.length; ++ti) {
