@@ -10,7 +10,7 @@ engine.onchange = function () {
     current = this.value;
     $('current').textContent = current;
 };
-engine.selectedIndex = current === 'gelbooru' ? 0 : (current === 'moebooru' ? 1 : 2);
+engine.selectedIndex = current == 'gelbooru' ? 0 : (current == 'moebooru' ? 1 : 2);
 engine.onchange();
 
 hitSync();
@@ -19,15 +19,15 @@ RestoreLastSettings();
 UploadOptions();
 
 function IsUploadable(file) {
-    return (typeof file.type === 'string' ? file.type.substr(0, 6) === 'image/' : true) && /(jpe?g|gif|png|bmp)$/i.test(file.name);
+    return (typeof file.type == 'string' ? file.type.substr(0, 6) == 'image/' : true) && /(jpe?g|gif|png|bmp)$/i.test(file.name);
 }
 
 function IsJson(file) {
-    return (typeof file.type === 'string' ? file.type === 'application/json' : true) && /(json)$/i.test(file.name);
+    return (typeof file.type == 'string' ? file.type == 'application/json' : true) && /(json)$/i.test(file.name);
 }
 
 function PossibleStringFor(obj, lookup) {
-    if(!obj[lookup] || obj[lookup] === null) {
+    if(!obj[lookup] || obj[lookup] == null) {
         return '';
     } else {
         return obj[lookup];
@@ -46,37 +46,19 @@ function RatingFor(obj) {
     return obj['rating'];
 }
 
-function TagsObjFor(obj, tags) {
-    var TagsObj = obj['tags'];
-    if (!TagsObj) {
-        return;
+function TagsFor(obj) {
+    var tags = [];
+    for (var k in obj['tags']) {
+        tags.push(k);
     }
-    for (var k in TagsObj) {
-        if (tags.indexOf(k) === -1) {
-            tags.push(k);
-        }
-    }
-}
-
-function TagStringsFor(obj, tags) {
-    var TagStrings = obj['TagStrings'];
-    if (!TagStrings) {
-        return;
-    }
-    for (var si = 0; si < TagStrings.length; ++si) {
-        var SplitTags = TagStrings[si].split(' ');
+    for (var si = 0; si < obj['TagStrings'].length; ++si) {
+        var SplitTags = obj['TagStrings'][si].split(' ');
         for (var ti = 0; ti < SplitTags.length; ++ti) {
             if (tags.indexOf(SplitTags[ti]) === -1) {
                 tags.push(SplitTags[ti]);
             }
         }
     }
-}
-
-function TagsFor(obj) {
-    var tags = [];
-    TagsObjFor(obj, tags);
-    TagStringsFor(obj, tags);
     return tags.join(' ');
 }
 
@@ -93,7 +75,7 @@ function GetReqVars(images, obj) {
     var reqVars = [];
     for(var fileKey in obj) {
         var imageIdx = InFiles(fileKey, images);
-        if ( imageIdx === -1 ) {
+        if ( imageIdx == -1 ) {
             LogFailureMessage('No image found for file name: "' + fileKey + '".');
             continue;
         } else if ( !IsUploadable(images[imageIdx]) ) {
@@ -154,7 +136,7 @@ function FilesSelected() {
         var reqVars = GetFileInfo();
         SendFiles(reqVars);
     } catch (e) {
-        if (typeof e === 'string') {
+        if (typeof e == 'string') {
             alert('Couldn\'t upload - ' + e);
         }
     }
@@ -258,7 +240,7 @@ function LogFailure(file, reason) {
 function SendFiles(reqVars, index) {
     index = index || 0;
     if (index < reqVars.length) {
-        if (index === 0) {
+        if (index == 0) {
             upOptions.stats.total = ReaderOutput.length;
             OnFirstUpload();
         }
@@ -277,9 +259,9 @@ function SendFile(reqVars, callback) {
     }
     var xhr = CreateXHRequest();
     xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            if (current === 'gelbooru') {
-                if (this.status === 200 || this.status === 302 || this.status === 304 /*not modified*/) {
+        if (this.readyState == 4) {
+            if (current == 'gelbooru') {
+                if (this.status == 200 || this.status == 302 || this.status == 304 /*not modified*/) {
                     if (~this.responseText.indexOf('generation failed')) {
                         LogFailure(reqVars.file, 'thumbnail generation failed, image might be corrupted even if added');
                     }
@@ -317,10 +299,10 @@ function SendFile(reqVars, callback) {
                         LogSuccess(reqVars.file);
                         break;
                     case 201:
-                        if (current === 'danbooru') {
+                        if (current == 'danbooru') {
                             var uploadResult = JSON.parse(xhr.response).status;
 
-                            if (uploadResult === 'completed') {
+                            if (uploadResult == 'completed') {
                                 LogSuccess(reqVars.file);
                             } else if (~uploadResult.indexOf('error:')) {
                                 if (~uploadResult.indexOf('duplicate')) {
