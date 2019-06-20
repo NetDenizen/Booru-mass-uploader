@@ -1,5 +1,9 @@
 # Changelog
 
+## 2019-06-20 1.0
+
+* Add full support for booru-wizard 1.0 output format.
+
 ## 2018-10-27 0.4
 
 * Add full support for booru-wizard 0.3 output format.
