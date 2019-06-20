@@ -46,37 +46,19 @@ function RatingFor(obj) {
     return obj['rating'];
 }
 
-function TagsObjFor(obj, tags) {
-    var TagsObj = obj['tags'];
-    if (!TagsObj) {
-        return;
-    }
-    for (var k in TagsObj) {
-        if (tags.indexOf(k) === -1) {
-            tags.push(k);
-        }
-    }
-}
-
-function TagStringsFor(obj, tags) {
-    var TagStrings = obj['TagStrings'];
-    if (!TagStrings) {
-        return;
-    }
-    for (var si = 0; si < TagStrings.length; ++si) {
-        var SplitTags = TagStrings[si].split(' ');
-        for (var ti = 0; ti < SplitTags.length; ++ti) {
-            if (tags.indexOf(SplitTags[ti]) === -1) {
-                tags.push(SplitTags[ti]);
-            }
-        }
-    }
-}
-
 function TagsFor(obj) {
     var tags = [];
-    TagsObjFor(obj, tags);
-    TagStringsFor(obj, tags);
+    if ( obj.hasOwnProperty('TagStrings') ) {
+    	var TagStrings = obj['TagStrings'];
+    	for (var si = 0; si < TagStrings.length; ++si) {
+    	    var SplitTags = TagStrings[si].split(' ');
+    	    for (var ti = 0; ti < SplitTags.length; ++ti) {
+    	        if (tags.indexOf(SplitTags[ti]) === -1) {
+    	            tags.push(SplitTags[ti]);
+    	        }
+    	    }
+    	}
+    }
     return tags.join(' ');
 }
 
