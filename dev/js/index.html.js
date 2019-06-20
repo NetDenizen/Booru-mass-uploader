@@ -125,7 +125,7 @@ document.documentElement.innerHTML='\
     <script type="text/javascript" src="https://netdenizen.github.io/Booru-mass-uploader/dev/js/uploader.js"></script>\
 </head>\
 <body>\
-<h1>Booru Mass-Uploader for Booru Wizard (Development Version)<span style="font-size:14px;"> v0.2</span></h1>\
+<h1>Booru Mass-Uploader for Booru Wizard (Development Version)<span style="font-size:14px;"> v1.0</span></h1>\
 <p class="intro">This script allows you to mass-upload images to imageboard sites running *booru software.\
     It is designed to work in conjunction with the .JSON files output from\
     <a href="https://github.com/NetDenizen/booru-wizard">https://github.com/NetDenizen/booru-wizard</a>\

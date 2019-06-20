@@ -2,8 +2,8 @@
 // @name        Booru Mass Uploader for Booru Wizard (Development Version)
 // @description Add ability to bulk upload images to your booru; meant to be used in conjunction with Booru wizard at: https://github.com/NetDenizen/booru-wizard Original by Seedmanc. This is the development version, which represents the current non-stable snapshot of the code.
 // @namespace   https://github.com/NetDenizen/Booru-mass-uploader
-// @version     0.2
-// @author      NetDeinzen
+// @version     1.0
+// @author      NetDenizen
 // @include     http*://*.booru.org/index.php*
 // @include     http://rule34.xxx/index.php*
 // @include     https://gelbooru.com/index.php*
