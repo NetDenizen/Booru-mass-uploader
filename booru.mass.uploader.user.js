@@ -4,7 +4,7 @@
 // @namespace   https://github.com/NetDenizen/Booru-mass-uploader
 // @version     1.0
 // @author      NetDenizen
-// @include     http*://*.booru.org/index.php*
+// @include     http*://*.booru.org/*
 // @include     http://rule34.xxx/index.php*
 // @include     https://gelbooru.com/index.php*
 // @include     http://safebooru.org/index.php*
