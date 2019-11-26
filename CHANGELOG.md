@@ -6,8 +6,6 @@
 
 * Imported scripts and other files now linked to version numbers.
 
-* Ensure that http-based uploading is used for booru.org, since https seems to not be supported.
-
 * Update atfbooru.ninja to allthefallen.moe for included sites.
 
 * Some minor refactoring.
