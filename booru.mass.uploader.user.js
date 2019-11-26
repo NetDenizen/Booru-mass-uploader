@@ -5,9 +5,9 @@
 // @version     1.0
 // @author      NetDenizen
 // @include     http*://*.booru.org/*
-// @include     http://rule34.xxx/index.php*
-// @include     https://gelbooru.com/index.php*
-// @include     http://safebooru.org/index.php*
+// @include     http://rule34.xxx/*
+// @include     https://gelbooru.com/*
+// @include     http://safebooru.org/*
 // @include     https://moe.dev.myconan.net/*
 // @include     http://behoimi.org/*
 // @include     https://chan.sankakucomplex.com/*
