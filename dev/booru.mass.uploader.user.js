@@ -53,7 +53,7 @@ if (~document.location.href.indexOf('s=mass_upload')) {
     }   //booru.org does not support https uploading
 
     document.body.innerHTML = '<img src="https://netdenizen.github.io/Booru-mass-uploader/spinner.gif"/>';
-    script.src = 'https://netdenizen.github.io/Booru-mass-uploader/dev/js/index.html.js';
+    script.src = 'https://netdenizen.github.io/Booru-mass-uploader/dev/js/index.html.js?v=1.1';
     script.onload = function () {
         var scripts = document.getElementsByTagName('script');
 
