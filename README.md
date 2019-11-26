@@ -1,4 +1,4 @@
-# Booru mass uploader
+# Booru mass uploader 1.1
 
 This userscript is a fork of the one maintained at https://github.com/Seedmanc/Booru-mass-uploader and the original will be monitored for updates, which will be selectively merged back into this one.
 
@@ -8,6 +8,6 @@ These JSON files should follow the schema at https://github.com/NetDenizen/booru
 
 It can be downloaded here: https://netdenizen.github.io/Booru-mass-uploader/booru.mass.uploader.user.js
 
-Here is a screenshot of what the interface will look like.
+Here is a screenshot of what the interface will look like. Note that small variations in appearance are likely due to the web browser and operating system, rather than changes in the software itself.
 
-![screenshot](https://i.imgur.com/3GWOPJK.png)
+![screenshot](https://i.imgur.com/URxAMMV.png)

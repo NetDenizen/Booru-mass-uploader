@@ -1,5 +1,17 @@
 # Changelog
 
+## 2019-11-26 1.1
+
+* booru.org, rule34.xx, gelbooru.com, and safebooru.org links are now recognized without the need for `index.php` to follow.
+
+* Imported scripts and other files now linked to version numbers.
+
+* Ensure that http-based uploading is used for booru.org, since https seems to not be supported.
+
+* Update atfbooru.ninja to allthefallen.moe for included sites.
+
+* Some minor refactoring.
+
 ## 2019-06-20 1.0
 
 * Add full support for booru-wizard 1.0 output format.
