@@ -265,8 +265,8 @@ function SendFile(reqVars, callback) {
                     if (~this.responseText.indexOf('generation failed')) {
                         LogFailure(reqVars.file, 'thumbnail generation failed, image might be corrupted even if added');
                     }
-                    // "mage" instead of "image" because first "I" might be capitalized.
-                    if (~this.responseText.indexOf('mage added')) {
+                    // "I" might be capitalized in "image", so convert to lower case before making the check..
+                    if (~this.responseText.toLowerCase().indexOf('image added')) {
                         LogSuccess(reqVars.file);
                     }
                     else if (~this.responseText.indexOf('already exists.')) {
