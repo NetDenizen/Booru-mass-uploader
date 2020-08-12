@@ -19,7 +19,8 @@ RestoreLastSettings();
 UploadOptions();
 
 function IsUploadable(file) {
-    return (typeof file.type === 'string' ? file.type.substr(0, 6) === 'image/' : true) && /(jpe?g|gif|png|bmp)$/i.test(file.name);
+    return (typeof file.type === 'string' ? file.type.substr(0, 6) === 'image/' || file.type.substr(0, 6) === 'video/' : true) &&
+		   /(jpe?g|gif|a?png|bmp|webp|webm|mp4)$/i.test(file.name);
 }
 
 function IsJson(file) {
