@@ -17,6 +17,9 @@
 // @exclude     *.jp*g
 // @exclude     *.gif
 // @exclude     *.webm
+// @exclude     *.bmp
+// @exclude     *.webp
+// @exclude     *.mp4
 
 // you can add any boorus of your choice by following the pattern
 
