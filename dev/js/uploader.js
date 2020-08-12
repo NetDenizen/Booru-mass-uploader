@@ -49,8 +49,8 @@ function RatingFor(obj) {
 
 function TagsFor(obj) {
     var tags = [];
-    if ( obj.hasOwnProperty('TagStrings') ) {
-        var TagStrings = obj['TagStrings'];
+    if ( obj.hasOwnProperty('tags') ) {
+        var TagStrings = obj['tags'];
         for (var si = 0; si < TagStrings.length; ++si) {
             var SplitTags = TagStrings[si].split(' ');
             for (var ti = 0; ti < SplitTags.length; ++ti) {
