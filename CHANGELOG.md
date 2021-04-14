@@ -1,5 +1,13 @@
 # Changelog
 
+## TODO-TO-DO 2.0
+
+* APNG, WEBP, WEBM, and MP4 formats no longer trigger the script.
+
+* Add full support for booru-wizard 2.0 output format.
+
+* Add support for APNG, WEBP, WEBM, and MP4 formats.
+
 ## 2019-11-26 1.1
 
 * booru.org, rule34.xx, gelbooru.com, and safebooru.org links are now recognized without the need for `index.php` to follow.

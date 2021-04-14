@@ -1,5 +1,7 @@
 # Booru mass uploader 1.1
 
+THIS REPOSITORY IS NOW ARCHIVED. The project it was initially made for never took off, so I see no reason to continue development. The non-finalized development branch should be pretty stable, though.
+
 This userscript is a fork of the one maintained at https://github.com/Seedmanc/Booru-mass-uploader and the original will be monitored for updates, which will be selectively merged back into this one.
 
 The primary change to this script is to allow it to accept JSON files that control the metadata with which an image is uploaded. Use in conjunction with the software at https://github.com/NetDenizen/booru-wizard was a main consideration in the development of the script. Thus, Most of the manual controls which would have served the same purpose in the previous version have been removed.
